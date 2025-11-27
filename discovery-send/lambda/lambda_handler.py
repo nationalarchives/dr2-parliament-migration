@@ -37,12 +37,12 @@ def lambda_handler(event, context):
             file_extension = metadata['Filename'].split(".")[-1]
             if file_extension == "tif" or file_extension == "tiff":
                 jpg_bytes = convert_file(file_id)
-                # s3_client.upload_fileobj(io.BytesIO(jpg_bytes), files_bucket, f"files/{record_id}/{file_id}.jpg")
+                s3_client.upload_fileobj(io.BytesIO(jpg_bytes), files_bucket, f"files/{record_id}/{file_id}.jpg")
                 file_extension = "jpg"
                 file_size = int(len(jpg_bytes) / 1000)
             else:
-                # files_copy_source = {"Bucket": pa_bucket, "Key": file_id}
-                # s3_client.copy(files_copy_source, files_bucket, f"files/{record_id}/{file_id}.{file_extension}")
+                files_copy_source = {"Bucket": pa_bucket, "Key": file_id}
+                s3_client.copy(files_copy_source, files_bucket, f"files/{record_id}/{file_id}.{file_extension}")
                 head_object_response = s3_client.head_object(Bucket=pa_bucket, Key=file_id)
                 file_size = int(head_object_response['ContentLength'] / 1000)
 
