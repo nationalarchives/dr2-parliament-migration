@@ -1,0 +1,6 @@
+//> using scala "3.3.1"
+//> using dep "org.typelevel::cats-effect:3.6.3"
+//> using dep "org.tpolecat::doobie-core:1.0.0-RC11"
+//> using dep "org.tpolecat::doobie-hikari:1.0.0-RC11"
+//> using dep "org.xerial:sqlite-jdbc:3.51.0.0"
+//> using dep "software.amazon.awssdk:s3:2.38.6"
